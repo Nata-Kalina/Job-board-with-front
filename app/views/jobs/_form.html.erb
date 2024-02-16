@@ -1,4 +1,5 @@
-<%= form_with(model: job) do |form| %>
+<%= form_with(model: [ @company, job ], url: company_jobs_path(@company), local: true) do |form| %>
+
   <% if job.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(job.errors.count, "error") %> prohibited this job from being saved:</h2>
@@ -54,6 +55,11 @@
   <div>
     <%= form.label :application_deadline, style: "display: block" %>
     <%= form.date_field :application_deadline %>
+  </div>
+
+  <div>
+    <%= form.label :company_id, style: "display: block" %>
+    <%= form.text_field :company_id %>
   </div>
 
   <div>

@@ -5,21 +5,7 @@
 # are not: uncommented lines are intended to protect your configuration from
 # breaking changes in upgrades (i.e., in the event that future versions of
 # Devise change the default values for those options).
-
-class TurboFailureApp < Devise::FailureApp
-  def respond
-    if request_format == :turbo_stream
-      :redirect
-    else
-      super
-    end
-  end
-
-  def skip_format?
-    %w[html turbo_stream].include? request_format.to_s
-  end
-end
-
+#
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -28,14 +14,8 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'ea1c09c1baba783a070c5d51ea3f7d2cd2f77b46ce8f211b449682c3098f5212a720e06ebb53b9aa01e187445d961c9929feaf499457751f626410f10841c8da'
+  # config.secret_key = 'b497cfe8579547632938d27afda5627443df9008161378fc7156f75b5a99d786ec4872cfc632531b6f73f1ee6c789b9ef6b108ef7a768ea509ecff910826fe88'
 
-  config.parent_controller = 'TurboDeviseController'
-  config.navigational_formats = ['*/*', :html, :turbo_stream]
-  config.warden do |manager|
-    manager.failure_app = TurboFailureApp
-  end
-  
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
@@ -146,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'e0030cf2d662c6f706b6f7558c715b4a11bb73b18da617d8e3e56c2a2ef36a276ce82bd442a191ab18e7190176ab6fa05d14b98b73714891b037a22a7ce43106'
+  # config.pepper = '8120163206cd8e61fe09442376dfa6120e8f71559f6c2ae63782fb9e0ba92552d8d04b11bd1ea98bd7fd1faf50e196695966535c4284a7cdc6ba0fcab93a20c6'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -330,7 +310,4 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
-
-  config.navigational_formats = []
-
 end

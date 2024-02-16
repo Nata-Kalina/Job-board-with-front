@@ -1,5 +1,11 @@
 class JobsController < ApplicationController
-  before_action :set_job, only: %i[ show edit update destroy ]
+
+  include AuthenticationCheck
+
+  before_action :is_user_logged_in, except: %i[show index]
+  before_action :set_job, only: [:show, :update, :destroy, :edit]
+  before_action :set_company, only: [:new, :create, :update, :destroy, :edit]
+  before_action :check_access, only: [:update, :destroy]
 
   # GET /jobs or /jobs.json
   def index
@@ -13,16 +19,20 @@ class JobsController < ApplicationController
 
   # GET /jobs/new
   def new
-    @job = Job.new
+    @job = @company.jobs.new
   end
 
   # GET /jobs/1/edit
   def edit
+    @company = Company.find_by(id: job_params[:company_id])
+    @job = Job.find(params[:id])
+    
   end
 
   # POST /jobs or /jobs.json
   def create
-    @job = Job.new(job_params)
+    @company = Company.find(params[:company_id])
+    @job = @company.jobs.new(job_params)
 
     respond_to do |format|
       if @job.save
@@ -67,5 +77,18 @@ class JobsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def job_params
       params.require(:job).permit(:title, :description, :location, :categoty, :remote, :salary, :requirements, :responsibilities, :application_deadline)
+    end
+
+    def set_company
+      @company = Company.find_by(id: params[:company_id])
+    end
+
+    def check_access
+      @company = Company.find_by(id: params[:company_id])
+      if (@company.user_id != current_user.id) 
+        render json: { message: "The current user is not authorized for that action."}, status: :unauthorized
+        return false
+      end
+      true
     end
 end

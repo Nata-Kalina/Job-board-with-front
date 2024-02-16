@@ -3,10 +3,9 @@ class Company < ApplicationRecord
     belongs_to :user
 
     validates :title, presence: true
-    validates :company, presence: true
+    validates :about, presence: true
     validates :industry, presence: true
     validates :website, presence: true
-    validates :location, presence: true
     validates :email, email: true
     validates :phone, presence: true, numericality: { only_integer: true }, length: { is: 10 }
     validates :linkedin, presence: true

@@ -17,7 +17,7 @@
   </p>
 
   <p>
-    <strong>Categoty:</strong>
+    <strong>Category:</strong>
     <%= job.categoty %>
   </p>
 
@@ -46,6 +46,21 @@
     <%= job.application_deadline %>
   </p>
 
- 
+  <p>
+    <strong>Company:</strong>
+    <%= job.company.title %>
+  </p>
 
+  <div>
+    
+    <%= link_to "Back to jobs", jobs_path %>
+
+    <% if current_user && current_user.account.present? %>
+      <%= link_to "Apply for this job", new_job_account_application_path(job_id: job.id, account_id: current_user.account.id) %>
+    <% elsif current_user %>
+      <%= link_to "Create Account", new_account_path %>
+    <% else %>
+      <%= link_to "Sign In", new_user_session_path %> 
+<% end %>
+    
 </div>

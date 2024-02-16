@@ -1,13 +1,13 @@
 class Users::SessionsController < Devise::SessionsController
-
-    respond_to :json
-    skip_forgery_protection only: [:create]
+  respond_to :json
+  skip_forgery_protection only: [:create]
 
   def destroy 
     @logged_in_user = current_user
     super 
   end
 
+  
   private
 
   def respond_with(resource, _opts = {})
@@ -32,6 +32,5 @@ class Users::SessionsController < Devise::SessionsController
 
   def log_out_failure
     render json: { message: "Hmm nothing happened."}, status: :unauthorized
-  end    
-
+  end
 end

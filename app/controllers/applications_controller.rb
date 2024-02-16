@@ -1,9 +1,18 @@
 class ApplicationsController < ApplicationController
-  before_action :set_application, only: %i[ show edit update destroy ]
+  
+  include AuthenticationCheck
+
+    before_action :is_user_logged_in
+    before_action :set_account
+    before_action :set_job, only: [:create]
+    before_action :set_application, only: [:show, :update, :destroy]
+    before_action :check_access
+
 
   # GET /applications or /applications.json
   def index
-    @applications = Application.all
+    @account = Account.find(params[:account_id])
+    @account.applications
   end
 
   # GET /applications/1 or /applications/1.json
@@ -12,6 +21,9 @@ class ApplicationsController < ApplicationController
 
   # GET /applications/new
   def new
+
+    @job = Job.find(params[:job_id])
+    @account = Account.find(params[:account_id])
     @application = Application.new
   end
 
@@ -21,11 +33,16 @@ class ApplicationsController < ApplicationController
 
   # POST /applications or /applications.json
   def create
-    @application = Application.new(application_params)
+
+    @job = Job.find(params[:job_id])
+    @account = Account.find(params[:account_id])
+    @application = @account.applications.new(application_params)
+    @application.account_id = @account.id
+    @application.job_id = @job.id
 
     respond_to do |format|
       if @application.save
-        format.html { redirect_to application_url(@application), notice: "Application was successfully created." }
+        format.html { redirect_to account_application_url(account_id: @account.id, id: @application.id), notice: "Application was successfully created." }
         format.json { render :show, status: :created, location: @application }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -66,5 +83,20 @@ class ApplicationsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def application_params
       params.require(:application).permit(:resume, :cover_letter, :status, :notes)
+    end
+
+    def set_account
+      @account = Account.find_by(id: params[:account_id])
+    end
+
+    def set_job
+      @job = Job.find_by(id: params[:job_id])
+    end
+
+    def check_access 
+      @account = Account.find(params[:account_id])
+      if @account.user_id != current_user.id
+        render json: { message: "The current user is not authorized for that action."}, status: :unauthorized
+      end
     end
 end
