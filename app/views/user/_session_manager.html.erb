@@ -1,8 +1,20 @@
 <% if current_user %>
   <li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            User functionality
+          </a>
     <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+    <% if current_user.account.present? %>
+      <li><%= link_to "Account", account_path(current_user.account), class:"dropdown-item" %></li>
+    <% else %>
       <li><%= link_to "New Account", new_account_path, class:"dropdown-item" %></li>
-      <li><%= link_to "New Company", new_company_path, class:"dropdown-item" %>
+    <% end %>
+    <% if current_user.company.present? %>
+      <li><%= link_to "Company", company_path(current_user.company), class:"dropdown-item" %></li>
+    <% else %>
+      <li><%= link_to "New Company", new_company_path, class:"dropdown-item" %></li>
+    <% end %>
+      <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item" href="#">Action</a></li>
         <li><%= link_to "Edit User", edit_user_registration_path, class:"dropdown-item" %></li>
         <li><hr class="dropdown-divider"></li>

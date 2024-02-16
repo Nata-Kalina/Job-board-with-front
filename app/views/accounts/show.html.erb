@@ -4,8 +4,49 @@
 
   <div>
     <%= link_to "Edit this account", edit_account_path(@account) %> |
-    <%= link_to "Back to accounts", accounts_path %>
+    <%= link_to "Back to jobs", jobs_path %>
 
     <%= button_to "Destroy this account", @account, method: :delete %>
   </div>
+
+  <div>
+  <%= link_to "Create Job Application", new_account_application_path(@account) %>
+  </div>
+
+  <div id="applications">
+  <h3>Applications:</h3>
+  <% if @account.applications.present? %>
+  <table style="border-collapse: collapse; width: 100%; border: 1px solid #000;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #000;">Application ID</th>
+      <th style="border: 1px solid #000;">Job Title</th>
+      <th style="border: 1px solid #000;">Job Category</th>
+      <th style="border: 1px solid #000;">Company Title</th>
+      <th colspan="3" style="border: 1px solid #000;">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @account.applications.each do |application| %>
+      <tr>
+        <td style="border: 1px solid #000;"><%= application.id %></td>
+        <td style="border: 1px solid #000;"><%= application.job.title %></td>
+        <td style="border: 1px solid #000;"><%= application.job.categoty %></td>
+        <td style="border: 1px solid #000;"><%= application.job.company.title%></td>
+        <td style="border: 1px solid #000;"><%= link_to 'Show', account_application_path(@account, application), class:"btn btn-primary" %></td>
+        <td style="border: 1px solid #000;"><%= link_to "Edit", edit_account_application_path(@account, application), class:"btn btn-primary" %></td>
+        <td style="border: 1px solid #000;">
+        <%= button_to "Destroy Application", account_application_path(@account, application), method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+  <% else %>
+    <p>No Applications To Show</p>
+    <div>
+      <%= link_to "Create Application", new_account_application_path(@account) %>
+    </div>
+  <% end %>
+
+
 </div>

@@ -1,4 +1,4 @@
-<%= form_with(model: application) do |form| %>
+<%= form_with(model: [ @job, @account, application ], url: job_account_applications_path(@job, @account), local: true) do |form| %>
   <% if application.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(application.errors.count, "error") %> prohibited this application from being saved:</h2>
@@ -23,13 +23,25 @@
 
   <div>
     <%= form.label :status, style: "display: block" %>
-    <%= form.text_field :status %>
+    <%= form.select :status, ['applied', 'received', 'pending', 'incomplete', 'accepted', 'rejected'] %>
   </div>
 
   <div>
     <%= form.label :notes, style: "display: block" %>
     <%= form.text_field :notes %>
   </div>
+
+  <div>
+    <%= form.label :job_id, style: "display: block" %>
+    <%= form.text_field :job_id %>
+  </div>
+
+  <div>
+    <%= form.label :account_id, style: "display: block" %>
+    <%= form.text_field :account_id %>
+  </div>
+
+
 
   <div>
     <%= form.submit %>

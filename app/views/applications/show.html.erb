@@ -3,9 +3,9 @@
   <%= render @application %>
 
   <div>
-    <%= link_to "Edit this application", edit_application_path(@application) %> |
-    <%= link_to "Back to applications", applications_path %>
+    <%= link_to "Edit this application", edit_account_application_path(@application) %> |
+    <%= link_to "Back to account", accounts_path(account_id: @application.account_id) %>
 
-    <%= button_to "Destroy this application", @application, method: :delete %>
+    <%= button_to "Destroy this application", account_application_path(account_id: @application.account_id, id: @application.id), method: :delete %>
   </div>
 </div>
