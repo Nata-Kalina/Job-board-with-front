@@ -1,17 +1,38 @@
 # README
 
-![Job Board Image](/public/stickers1.jpeg)
+![Job Board Image](/public/stickers1.jpg)
 
 # Job Board Application
 
 ## Overview
-    A job board application is a digital platform that connects employers with potential employees by allowing companies to post job vacancies and job seekers to submit their applications. It serves as a marketplace where employers can find candidates with the specific skills and experience they need, and job seekers can find opportunities that match their qualifications and career aspirations.
-    This job application platform has four data models plus User that was created automatically by Devise. 
-    There are Accounts, Companies, Jobs and Applications models. 
-    User can create one Company and one Account. 
-    Company can create multiple jobs. 
-    Account can create multiple applications. 
-    Job Application can be created from the Job page, the route for it will involve Account, so the Job application record will include both the company_id and the account_id.
+
+A job board application is a dynamic platform designed to bridge the gap between employers and potential employees. It facilitates the posting of job vacancies by companies and the submission of applications by job seekers, creating a comprehensive marketplace for talent acquisition and career advancement.
+
+## Key Features
+
+- **Employer and Job Seeker Interface:** Offers a dual interface catering to the needs of both hiring companies and individuals seeking employment.
+- **Advanced Search Functionality:** Enables users to filter job listings based on various criteria to find matches that suit their qualifications and career goals.
+
+## Data Models
+
+The application is built on a robust data model that includes:
+
+- **User**: Created automatically by Devise for authentication.
+- **Accounts**: Represents job seekers' profiles.
+- **Companies**: Allows employers to create profiles and post job vacancies.
+- **Jobs**: Listings created by companies looking for candidates.
+- **Applications**: Submissions by users applying for jobs.
+
+## Relationships
+
+- A **User** can create one **Company** and one **Account**.
+- A **Company** can post multiple **Jobs**.
+- An **Account** can submit multiple **Applications**.
+- **Job Applications** are linked directly to **Jobs**, incorporating both `company_id` and `account_id` to connect employers with potential candidates.
+
+## Getting Started
+
+To explore job opportunities or post vacancies, begin by registering an account, following which you can either create a company profile or update your personal account details to start applying for jobs or accepting applications.
 
 ## Features
 - User authentication (sign up, sign in, sign out)
