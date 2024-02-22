@@ -1,13 +1,30 @@
-<p style="color: green"><%= notice %></p>
 
 <h1>Jobs</h1>
 
-<div id="jobs">
-  <% @jobs.each do |job| %>
-    <%= render job %>
-    <p>
-      <%= link_to "Show this job", job %>
-    </p>
-  <% end %>
-</div>
+<div class="container-fluid row">
+ 
+    <% @jobs.each do |job| %>
+      <div class="card border border-2 border-success p-1 m-3" style="width: 18rem">
+        <div class="card-header">
+          <h4 class="card-title"><%= job.title %></h4>
+        </div>
+        <div class="card-body">
+          <div class="card-content">
+            <p class="card-text"><%= job.company.title %></p>
+            <p class="card-text"><%= job.description %></p>
+            <p class="card-text"><%= job.location %></p>
+            <p class="card-text"><%= job.categoty %></p>
+            <p class="card-text"><%= job.salary %></p>
+          </div>
+        </div>  
+        <div class="card-footer">
+          <div class="card-content">
+            <p><%= link_to "Show this job", job %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>  
+    
+</div> 
+
 

@@ -24,6 +24,7 @@ class AccountsController < ApplicationController
 
   # GET /accounts/1/edit
   def edit
+    @account = Account.find(params[:id])
   end
 
   # POST /accounts or /accounts.json

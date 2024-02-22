@@ -1,17 +1,21 @@
 <p style="color: green"><%= notice %></p>
 <div class="container">
   <%= render @company %>
+  
+  <div><%= link_to "Back to companies", companies_path %></div>
 
-  <div>
-    <%= link_to "Edit this company", edit_company_path(@company) %> |
-    <%= link_to "Back to companies", companies_path %>
+  <% if current_user %>
+    <% if current_user.id == @company.user_id %>
+      <div>
+        <%= link_to "Edit this company", edit_company_path(@company) %> |
+        <%= button_to "Destroy this company", @company, method: :delete %>
+      </div>
 
-    <%= button_to "Destroy this company", @company, method: :delete %>
-  </div>
-
-  <div>
-  <%= link_to "Create Job", new_company_job_path(@company) %>
-  </div>
+      <div>
+      <%= link_to "Create Job", new_company_job_path(@company) %>
+      </div>
+    <% end %>
+  <% end %>
 
   <div id="jobs">
   <h3>Jobs:</h3>
@@ -33,19 +37,20 @@
         <td style="border: 1px solid #000;"><%= job.title %></td>
         <td style="border: 1px solid #000;"><%= job.categoty %></td>
         <td style="border: 1px solid #000;"><%= job.application_deadline%></td>
-        <td style="border: 1px solid #000;"><%= link_to 'Show', job_path(job), class:"btn btn-primary" %></td>
-        <td style="border: 1px solid #000;"><%= link_to "Edit Job", edit_company_job_path(@company, job), class:"btn btn-primary" %></td>
-        <td style="border: 1px solid #000;">
-        <%= button_to "Destroy Job", company_job_path(@company, job), method: :delete %></td>
+        <% if current_user %>
+          <% if current_user.id == @company.user_id %>
+            <td style="border: 1px solid #000;"><%= link_to 'Show', job_path(job), class:"btn btn-primary" %></td>
+            <td style="border: 1px solid #000;"><%= link_to "Edit Job", edit_company_job_path(@company, job), class:"btn btn-primary" %></td>
+            <td style="border: 1px solid #000;">
+            <%= button_to "Destroy Job", company_job_path(@company, job), method: :delete %></td>
+          <% end %>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
   </table>
   <% else %>
     <p>No Jobs To Show</p>
-    <div>
-      <%= link_to "Create Job", new_company_job_path(@company) %>
-    </div>
   <% end %>
 
 </div>
