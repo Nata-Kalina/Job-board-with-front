@@ -13,3 +13,65 @@
  *= require_tree .
  *= require_self
  */
+ @import "bootstrap";
+ @import "font-awesome-rails";
+
+ .my_alert {
+    color: red;
+  }
+
+  :root {
+    --bs-body-bg: #dde6f5;
+ }
+
+ @font-face {
+  font-family: 'Courgette';
+  src: url('Courgette-Regular.ttf');
+}
+
+h1 {
+  font-family: 'Courgette';
+  text-align: center;
+}
+
+ .banner-background {
+  background-image: url('stickers.jpg');
+  background-size: cover;
+  font-family: 'Courgette';
+  width: 100vw;
+  height: 25vh;
+}
+
+.navbar {
+  font-family: 'Courgette';
+  font-size: 200%;
+}
+
+.container {
+  font-family: 'Courgette';
+ /* background: linear-gradient(to left, rgb(189, 223, 250), rgb(203, 248, 244)); */
+  background: rgba(238, 240, 240, 0.925) ;
+  height: 100vw;
+  padding: 20px;
+  font-size: 150%;
+}
+
+.container-fluid {
+  font-family: 'Courgette';
+  font-size: 150%;
+}
+
+.container-devise {
+  font-family: 'Courgette';
+  background: rgba(238, 240, 240, 0.925);
+  font-size: 120%;
+  height: 100vw;
+  padding: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%; /* or your desired width */
+
+  
+}
+

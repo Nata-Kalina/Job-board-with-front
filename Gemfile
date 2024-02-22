@@ -44,6 +44,9 @@ gem "bootsnap", require: false
 gem 'email_validator', '~> 1.6'
 gem 'devise', '~> 4.9', '>= 4.9.3'
 gem 'strong_password', '~> 0.0.10'
+gem 'bootstrap', '~> 5.3', '>= 5.3.2'
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.8'
+gem 'sassc-rails', '~> 2.1', '>= 2.1.2'
 
 # Use Sass to process CSS
 # gem "sassc-rails"

@@ -1,5 +1,23 @@
 <div class="container">
-    <h1>Pages#about</h1>
-    <p>Find me in app/views/pages/about.html.erb</p>
-    <%= link_to "Home", root_path %>
+
+<h2>Final Project Overview</h2>
+
+<p>In my final project, a job application platform, I created four data models plus User that was created automatically by Devise. 
+There are Accounts, Companies, Jobs and Applications models. 
+User can create one Company and one Account. 
+Company can create multiple jobs. 
+Account can create multiple applications. 
+Job Application can be created from the Job page, the route for it will involve Account, so the Job record will include both the company_id and the account_id.</p>
+<p>I integrated several technologies and features to enhance functionality and user experience:</p>
+        <ul>
+            <li><strong>Devise:</strong> Used for secure user authentication, enabling features such as sign-up, login, and session management.</li>
+            <li><strong>Bootstrap:</strong> Ensured responsive and visually appealing design across different devices.</li>
+            <li><strong>Nested Routes:</strong> Allowed structured and intuitive navigation between companies, jobs, and applications.</li>
+            <li><strong>Server-side Rendering:</strong> Improved content delivery speeds, enhancing user interaction.</li>
+            <li><strong>Conditional Rendering:</strong> Enabled content display based on user roles and permissions, offering a tailored interface.</li>
+            <li><strong>Related Tables & Foreign Keys:</strong> Utilized in the database to maintain relationships between users, jobs, and companies.</li>
+            <li><strong>Rails Associations:</strong> Used to simplify data operations across models, making the app more efficient and maintainable.</li>
+        </ul>
+    
+        <%= link_to "Home", root_path, class:"btn btn-secondary" %>
 </div>

@@ -9,10 +9,6 @@
     <%= button_to "Destroy this account", @account, method: :delete %>
   </div>
 
-  <div>
-  <%= link_to "Create Job Application", new_account_application_path(@account) %>
-  </div>
-
   <div id="applications">
   <h3>Applications:</h3>
   <% if @account.applications.present? %>
@@ -43,9 +39,7 @@
   </table>
   <% else %>
     <p>No Applications To Show</p>
-    <div>
-      <%= link_to "Create Application", new_account_application_path(@account) %>
-    </div>
+    
   <% end %>
 
 
