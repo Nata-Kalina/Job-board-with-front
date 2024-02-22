@@ -30,10 +30,6 @@ The application is built on a robust data model that includes:
 - An **Account** can submit multiple **Applications**.
 - **Job Applications** are linked directly to **Jobs**, incorporating both `company_id` and `account_id` to connect employers with potential candidates.
 
-## Getting Started
-
-To explore job opportunities or post vacancies, begin by registering an account, following which you can either create a company profile or update your personal account details to start applying for jobs or accepting applications.
-
 ## Features
 - User authentication (sign up, sign in, sign out)
 - Job posting by employers
