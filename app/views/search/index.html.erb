@@ -1,0 +1,21 @@
+<h1 class="text-center"><%= pluralize(@jobs.count, "Result") %></h1>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= sort_link(@query, :title, "Job Title", default_order: :asc) %></th>
+        <th><%= sort_link(@query, :location, "Job Location") %></th>
+        <th><%= sort_link(@query, :salary, "Salary") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @jobs.each do |job| %>
+        <tr>
+          <td><%= link_to job.title, job %></td>
+          <td><%= job.location %></td>
+          <td><%= job.salary %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

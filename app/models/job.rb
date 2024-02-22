@@ -14,4 +14,12 @@ class Job < ApplicationRecord
     
     has_many :applications, dependent: :destroy
 
+    def self.ransackable_attributes(auth_object = nil)
+        ["location", "remote", "salary", "title"]
+    end
+
+    def self.ransackable_associations(auth_object = nil)
+        ["applications", "company"]
+    end
+
 end
