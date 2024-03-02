@@ -3,7 +3,7 @@ class AccountsController < ApplicationController
   include AuthenticationCheck
 
     before_action :is_user_logged_in
-    before_action :set_account, only: [:show, :update, :destroy]
+    before_action :set_account, only: [:show, :update, :destroy, :destroy_with_applications]
 
   # GET /accounts or /accounts.json
   def index
@@ -59,14 +59,26 @@ class AccountsController < ApplicationController
 
   # DELETE /accounts/1 or /accounts/1.json
   def destroy
-    if check_access
-    @account.destroy
+      if check_access
+      @account.destroy
 
     respond_to do |format|
-      format.html { redirect_to accounts_url, notice: "Account was successfully destroyed." }
+      format.html { redirect_to accounts_url, notice: "Account was successfully deleted." }
       format.json { head :no_content }
     end
   end
+end
+
+  def destroy_with_applications
+    if (@account.applications.exists?)
+      @account.applications.destroy_all
+    end
+    @account.destroy
+
+    respond_to do |format|
+      format.html { redirect_to accounts_url, notice: "The account record and all related applications records were successfully deleted." }
+      format.json { head :no_content }
+    end
   end
 
   private

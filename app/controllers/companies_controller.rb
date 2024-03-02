@@ -3,7 +3,7 @@ class CompaniesController < ApplicationController
   include AuthenticationCheck
 
     before_action :is_user_logged_in, except: %i[show index]
-    before_action :set_company, only: [:show, :update, :destroy]
+    before_action :set_company, only: [:show, :update, :destroy, :destroy_with_jobs]
 
   # GET /companies or /companies.json
   def index
@@ -65,6 +65,18 @@ class CompaniesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  end
+
+  def destroy_with_jobs
+    if (@company.jobs.exists?)
+      @company.jobs.destroy_all
+    end
+    @company.destroy
+
+    respond_to do |format|
+      format.html { redirect_to companies_url, notice: "The company record and all related jobs records were successfully deleted." }
+      format.json { head :no_content }
+    end
   end
 
   private

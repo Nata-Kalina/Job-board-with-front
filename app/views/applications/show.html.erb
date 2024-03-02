@@ -6,6 +6,11 @@
     <%= link_to "Edit this application", edit_account_application_path(@application) %> |
     <%= link_to "Back to account", account_path(account_id: @application.account_id) %>
 
-    <%= button_to "Destroy this application", account_application_path(account_id: @application.account_id, id: @application.id), method: :delete %>
   </div>
+
+  <div>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal-<%= @application.id%>">Delete</button>
+  </div>
+
+  <%= render partial: 'deleteModal', locals: { application: @application } %>
 </div>

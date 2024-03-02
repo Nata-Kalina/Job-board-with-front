@@ -8,6 +8,7 @@
     <p>
       <%= link_to "Show this account", account %>
     </p>
+    <%= render partial: 'deleteModal', locals: { account: account } %>
   <% end %>
 </div>
 </div>

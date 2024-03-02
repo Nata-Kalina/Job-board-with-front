@@ -8,8 +8,12 @@
     <% if current_user.id == @company.user_id %>
       <div>
         <%= link_to "Edit this company", edit_company_path(@company) %> |
-        <%= button_to "Destroy this company", @company, method: :delete %>
       </div>
+      <div>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal-<%= @company.id%>">Delete</button>
+      </div>
+      
+      <%= render partial: 'deleteModal', locals: { company: @company } %>
 
       <div>
       <%= link_to "Create Job", new_company_job_path(@company) %>

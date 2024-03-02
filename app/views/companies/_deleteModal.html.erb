@@ -1,0 +1,29 @@
+
+
+<div class="modal" id="<%= "myModal-#{company.id}" %>">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Are you sure?</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+       <p>Are you sure you want to delete the company and jobs records for <%= company.title %>?
+           That company has <%= company.jobs.count.to_s %> jobs.  If there are any jobs for this
+           company, those jobs will be deleted too! </p>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+      <%= button_to("Delete", "/companies/companyAndJobs/#{company.id}", method: :delete, class: "btn btn-danger", 
+      data: { "bs-dismiss" => "modal" })  %>
+<button type="button", class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>         
+      </div>
+
+    </div>
+  </div>
+</div>
