@@ -9,4 +9,12 @@
     <%= link_to "Show this job", @job %> |
     <%= link_to "Back to jobs", jobs_path %>
   </div>
+
+  <div>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal-<%= @job.id%>">Delete</button>
+  </div>
+
+  <%= render partial: 'deleteModal', locals: { job: @job } %>
+</div>
+
 </div>

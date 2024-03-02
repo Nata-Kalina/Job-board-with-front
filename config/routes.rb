@@ -22,4 +22,8 @@ Rails.application.routes.draw do
   get "about", to: "pages#about"
 
   root "pages#home"
+
+  delete "/accounts/accountAndApplications/:id", to: "accounts#destroy_with_applications", as: :destroy_with_applications
+  delete "/companies/companyAndJobs/:id", to: "companies#destroy_with_jobs", as: :destroy_with_jobs
+
 end

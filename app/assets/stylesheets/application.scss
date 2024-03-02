@@ -13,42 +13,46 @@
  *= require_tree .
  *= require_self
  */
+
+
+
  @import "bootstrap";
- @import "font-awesome-rails";
+ require font-awesome-rails
+ require bootstrap
 
  .my_alert {
     color: red;
   }
 
   :root {
-    --bs-body-bg: #dde6f5;
+    --bs-body-bg: #e2e7f0;
  }
 
  @font-face {
-  font-family: 'Courgette';
-  src: url('Courgette-Regular.ttf');
+  font-family: 'Lato';
+  src: url('Lato-Regular.ttf');
 }
 
 h1 {
-  font-family: 'Courgette';
+  font-family: 'Lato';
   text-align: center;
 }
 
  .banner-background {
   background-image: url('stickers.jpg');
   background-size: cover;
-  font-family: 'Courgette';
+  font-family: 'Lato';
   width: 100vw;
   height: 25vh;
 }
 
 .navbar {
-  font-family: 'Courgette';
+  font-family: 'Lato';
   font-size: 200%;
 }
 
 .container {
-  font-family: 'Courgette';
+  font-family: 'Lato';
  /* background: linear-gradient(to left, rgb(189, 223, 250), rgb(203, 248, 244)); */
   background: rgba(238, 240, 240, 0.925) ;
   height: 100vw;
@@ -57,12 +61,12 @@ h1 {
 }
 
 .container-fluid {
-  font-family: 'Courgette';
+  font-family: 'Lato';
   font-size: 150%;
 }
 
 .container-devise {
-  font-family: 'Courgette';
+  font-family: 'Lato';
   background: rgba(238, 240, 240, 0.925);
   font-size: 120%;
   height: 100vw;

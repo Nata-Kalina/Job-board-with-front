@@ -5,9 +5,12 @@
   <div>
     <%= link_to "Edit this account", edit_account_path(@account) %> |
     <%= link_to "Back to jobs", jobs_path %>
-
-    <%= button_to "Destroy this account", @account, method: :delete %>
   </div>
+  <div>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal-<%= @account.id%>">Delete</button>
+  </div>
+
+  <%= render partial: 'deleteModal', locals: { account: @account } %>
 
   <div id="applications">
   <h3>Applications:</h3>
@@ -32,7 +35,6 @@
         <td style="border: 1px solid #000;"><%= link_to 'Show', account_application_path(@account, application), class:"btn btn-primary" %></td>
         <td style="border: 1px solid #000;"><%= link_to "Edit", edit_account_application_path(@account, application), class:"btn btn-primary" %></td>
         <td style="border: 1px solid #000;">
-        <%= button_to "Destroy Application", account_application_path(@account, application), method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
