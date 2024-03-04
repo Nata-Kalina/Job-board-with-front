@@ -6,9 +6,9 @@
   <% @applications.each do |application| %>
     <%= render application %>
     <p>
-      <%= link_to "Show this application", application %>
+      <%= link_to "Show this application", account_application_path(id: application.id) %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New application", new_application_path %>
+

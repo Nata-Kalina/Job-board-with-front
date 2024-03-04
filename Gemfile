@@ -42,7 +42,6 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 gem 'email_validator', '~> 1.6'
-gem 'devise', '~> 4.9', '>= 4.9.3'
 gem 'strong_password', '~> 0.0.10'
 gem 'bootstrap', '~> 5.3', '>= 5.3.2'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.8'
@@ -58,6 +57,12 @@ gem 'ransack', '~> 4.1', '>= 4.1.1'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'rails-controller-testing'
+  gem 'rexml'
+  gem 'devise', '~> 4.9', '>= 4.9.3'
 end
 
 group :development do
@@ -75,5 +80,6 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+
 
 end

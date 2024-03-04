@@ -12,7 +12,7 @@ class ApplicationsController < ApplicationController
   # GET /applications or /applications.json
   def index
     @account = Account.find(params[:account_id])
-    @account.applications
+    @applications = @account.applications
   end
 
   # GET /applications/1 or /applications/1.json
@@ -29,6 +29,9 @@ class ApplicationsController < ApplicationController
 
   # GET /applications/1/edit
   def edit
+    @job = Job.find(params[:job_id])
+    @account = Account.find(params[:account_id])
+    @application = Application.find(params[:id])
   end
 
   # POST /applications or /applications.json
@@ -55,7 +58,7 @@ class ApplicationsController < ApplicationController
   def update
     respond_to do |format|
       if @application.update(application_params)
-        format.html { redirect_to application_url(@application), notice: "Application was successfully updated." }
+        format.html { redirect_to account_application_path(@application), notice: "Application was successfully updated." }
         format.json { render :show, status: :ok, location: @application }
       else
         format.html { render :edit, status: :unprocessable_entity }

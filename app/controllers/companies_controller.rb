@@ -12,7 +12,7 @@ class CompaniesController < ApplicationController
 
   # GET /companies/1 or /companies/1.json
   def show
-    @company
+    @company = Company.find(params[:id])
   end
   
   # GET /companies/new
